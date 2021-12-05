@@ -29,10 +29,6 @@ class FpsCounterMax:
         if len(self.fps_points) > self.fps_point_amount:
             self.fps_points.pop(0)
 
-        all_fps = 0
-        for fps_point in self.fps_points:
-            all_fps += fps_point
-
         median = 0
         deviation = 0
         if len(self.fps_points) >= 2:
@@ -41,7 +37,7 @@ class FpsCounterMax:
 
         self.fps_text1 = self.fps_template1.format(
             self.time_point_count,
-            all_fps / len(self.fps_points),
+            sum(self.fps_points) / len(self.fps_points),
             min(self.fps_points),
             max(self.fps_points),
             median,
